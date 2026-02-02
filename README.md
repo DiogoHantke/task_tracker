@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 📋 Task Tracker CLI
 
 Um **aplicativo de linha de comando (CLI)** para criar, gerenciar e acompanhar tarefas diretamente pelo terminal.  
@@ -35,3 +36,7 @@ Cada tarefa possui os seguintes campos:
   "createdAt": "2026-01-31 18:30:00",
   "updatedAt": "2026-01-31 18:30:00"
 }
+=======
+# task_tracker
+Um aplicativo de linha de comando (CLI) para rastrear e gerenciar suas tarefas. Permite adicionar, atualizar, excluir e listar tarefas, além de marcar o status como "todo", "em andamento" ou "feito". Todas as tarefas são armazenadas em um arquivo JSON local, garantindo persistência entre sessões.
+>>>>>>> 4cce3c4 (Initial commit)

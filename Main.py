@@ -8,17 +8,16 @@ def read_json():
     try:
         with open(file_path, "r", encoding="utf-8") as file:
             tasks = json.load(file)
-        print(tasks)
+            return tasks
 
     except FileNotFoundError:
         with open(file_path, "w", encoding="utf-8") as file:
             tasks = {
-                
+                []
             }
             json.dump(tasks, file, ensure_ascii=False, indent=2) #estudar mais
             print("Arquivo de tarefas criado, adicione sua tarefa")
             return None
-    return None
 
 
 def write_json(tasks : dict):
@@ -43,9 +42,20 @@ def task_list():
 
     if tasks is None:
         print("Não há nenhuma tarefa na lista")
+    else:
+        print(display_task(tasks))
 
-def display_task():
-    ...
+def display_task(tasks : dict):
+
+    tasks, data = [data for data in tasks['tasks']], []
+
+    for index in range(len(tasks)):
+        data.append(tasks[index].values())
+    
+    headers = ["id", "title", "description", "create_date", "priority", "status"]
+    table = tabulate(data, headers=headers, tablefmt="fancy_grid")
+
+    return table
 
 if __name__ == "__main__":
     os.system('cls')

@@ -21,7 +21,6 @@ def read_json():
         print("arquivo corrompido. ")
         return None
 #---------------------------------------------------------------------------------------
-
 def write_json(tasks : dict):
     base_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(base_dir, "tasks.json")
@@ -34,31 +33,36 @@ def write_json(tasks : dict):
         print("arquivo corrompido.")
 #---------------------------------------------------------------------------------------
 def task_add():
-    tasks, new_id = read_json(), 0
+    tasks, new_id = read_json(), 1
 
     if tasks is None: #melhorar tratamento de erro no arquivo
         return None
 
-    list_id = [task['id'] for task in tasks['tasks']]
-
     if tasks['tasks'] == []:
-        new_id = 0
+        new_id = 1
     else:
+        list_id = [task['id'] for task in tasks['tasks']]
         new_id = max(list_id)+1
 
-    #adicionar algoritmo de quebra de linha
-    
+    # adicionar algoritmo de quebra de linha
+
+    title = input("Digite o título: ").strip()
+    description = input("Digite a descrição: ").strip()
+    priority = input("Digite a prioridade (Baixa, Média, Alta): ").strip()
+
     tasks['tasks'].append({
         'id' : new_id,
-        'title' : input("Digite o título: "),
-        'description' : input("Digite a descrição: "),
+        'title' : title,
+        'description' : description,
         'create_date' : os.popen('date /t').read().strip(),
-        'priority' : input("Digite a prioridade (Baixa, Média, Alta): "),
+        'priority' : priority,
         'status' : 'Pending'
     })
-    
+
     write_json(tasks)
 #---------------------------------------------------------------------------------------
+def task_help():
+    ...
     
 def task_update():
     ...
@@ -88,11 +92,13 @@ if __name__ == "__main__":
     os.system('cls')
 
     argv = sys.argv
+
     commands = {
         "task-add"    : task_add,
         "task-update" : task_update,
         "task-drop"   : task_drop,
         "task-list"   : task_list,
+        "task-help"   : task_help,
         "task-exit"   : exit
     }
 
@@ -100,4 +106,4 @@ if __name__ == "__main__":
         commands[argv[1].lower()]() if argv[1].lower() in commands else print("ErrorCommand: Not found")
     except IndexError:
         print("O comando não existe, tente task-list, task-add, task-update")
-    
+  #---------------------------------------------------------------------------------------  

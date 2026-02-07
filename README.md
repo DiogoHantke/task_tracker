@@ -80,7 +80,7 @@ python task.py <comando> [argumentos]
 ### Adicionar tarefa
 
 ```bash
-python task.py task-add
+python Main.py task-add <title> <description> <priority>
 ```
 
 ### Listar tarefas

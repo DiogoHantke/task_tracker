@@ -6,7 +6,7 @@
 
 <h2>Demonstração</h2>
 <p>GIF de demonstração do uso do CLI (substitua pelo caminho correto do arquivo GIF no repositório):</p>
-<pre><code>![Demonstração do Task Tracker CLI](task_tracker.gif)</code></pre>
+<img src="task_tracker.gif" alt="Demonstração do Task Tracker CLI">
 
 <h2>Funcionalidades</h2>
 <ul>

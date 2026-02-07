@@ -5,7 +5,7 @@
 <p>O projeto armazena as tarefas em um arquivo JSON local, permitindo acompanhar tarefas pendentes, em andamento e concluídas.</p>
 
 <h2>Demonstração</h2>
-<p>GIF de demonstração do uso do CLI (substitua pelo caminho correto do arquivo GIF no repositório):</p>
+<p>GIF de demonstração do uso do CLI:</p>
 <img src="task_tracker.gif" alt="Demonstração do Task Tracker CLI">
 
 <h2>Funcionalidades</h2>

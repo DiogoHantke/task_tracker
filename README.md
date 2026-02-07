@@ -1,142 +1,91 @@
-# Task Tracker CLI
+<h1>Task Tracker CLI</h1>
 
-Um **gerenciador de tarefas via linha de comando (CLI)** simples e direto, desenvolvido como projeto didático do [Roadmap.sh](https://roadmap.sh/projects/task-tracker) para praticar fundamentos essenciais de programação como manipulação de arquivos, tratamento de erros, argumentos de linha de comando e organização de código.
+<p>Task Tracker é um <strong>gerenciador de tarefas via linha de comando (CLI)</strong> simples, desenvolvido como projeto didático do <a href="https://roadmap.sh/projects/task-tracker" target="_blank">Roadmap.sh</a>. O objetivo é praticar fundamentos essenciais de programação, como manipulação de arquivos, tratamento de erros, argumentos de linha de comando e organização de código.</p>
 
-O projeto armazena as tarefas em um arquivo JSON local, permitindo acompanhar o que precisa ser feito, o que está em andamento e o que já foi concluído.
+<p>O projeto armazena as tarefas em um arquivo JSON local, permitindo acompanhar tarefas pendentes, em andamento e concluídas.</p>
 
----
+<h2>Demonstração</h2>
+<p>GIF de demonstração do uso do CLI (substitua pelo caminho correto do arquivo GIF no repositório):</p>
+<pre><code>![Demonstração do Task Tracker CLI](task_tracker.gif)</code></pre>
 
-## 📸 Demonstração
+<h2>Funcionalidades</h2>
+<ul>
+    <li>Adicionar novas tarefas</li>
+    <li>Atualizar tarefas existentes</li>
+    <li>Remover tarefas pelo ID</li>
+    <li>Listar todas as tarefas</li>
+    <li>Persistência de dados em arquivo JSON</li>
+    <li>Criação automática do arquivo de dados caso não exista</li>
+    <li>Tratamento básico de erros e casos de borda</li>
+</ul>
+<p>Cada tarefa possui:</p>
+<ul>
+    <li>ID único</li>
+    <li>Título</li>
+    <li>Descrição</li>
+    <li>Data de criação</li>
+    <li>Prioridade</li>
+    <li>Status</li>
+</ul>
 
-> GIF de demonstração do uso do CLI (em breve):
+<h2>Tecnologias utilizadas</h2>
+<ul>
+    <li>Python 3</li>
+    <li>Módulos nativos: <code>json</code>, <code>sys</code>, <code>os</code></li>
+</ul>
+<p>Este projeto não utiliza frameworks ou bibliotecas externas, mantendo o foco em recursos nativos para fins educacionais.</p>
 
-```markdown
-![Demonstração do Task Tracker CLI](./assets/demo.gif)
-```
-
-*(Substitua o caminho pelo local correto do GIF quando adicioná-lo ao repositório.)*
-
----
-
-## 🚀 Funcionalidades
-
-* Adicionar novas tarefas
-* Atualizar tarefas existentes
-* Remover tarefas pelo ID
-* Listar todas as tarefas
-* Persistência de dados em arquivo JSON
-* Criação automática do arquivo de dados caso não exista
-* Tratamento básico de erros e casos de borda
-
-Cada tarefa possui:
-
-* ID único
-* Título
-* Descrição
-* Data de criação
-* Prioridade
-* Status
-
----
-
-## 🛠️ Tecnologias utilizadas
-
-* **Python 3**
-* Módulos nativos:
-
-  * `json`
-  * `sys`
-  * `os`
-
-> ⚠️ Observação: este projeto não utiliza frameworks ou bibliotecas externas, seguindo o objetivo educacional de trabalhar apenas com recursos nativos.
-
----
-
-## 📂 Estrutura do projeto
-
-```text
-.
+<h2>Estrutura do projeto</h2>
+<pre><code>.
 ├── task.py        # Script principal do CLI
 ├── tasks.json     # Arquivo de armazenamento das tarefas (gerado automaticamente)
 └── README.md
-```
+</code></pre>
 
----
+<h2>Como executar</h2>
+<p>Certifique-se de ter o Python 3 instalado. No diretório do projeto, execute:</p>
+<pre><code>python task.py &lt;comando&gt; [argumentos]</code></pre>
 
-## ▶️ Como executar
+<h2>Comandos disponíveis</h2>
 
-Certifique-se de ter o **Python 3** instalado.
+<h3>Adicionar tarefa</h3>
+<pre><code>python task.py task-add &lt;title&gt; &lt;description&gt; &lt;priority&gt;</code></pre>
 
-No diretório do projeto, execute:
+<h3>Listar tarefas</h3>
+<pre><code>python task.py task-list</code></pre>
 
-```bash
-python task.py <comando> [argumentos]
-```
+<h3>Remover tarefa pelo ID</h3>
+<pre><code>python task.py task-drop &lt;id&gt;</code></pre>
 
----
+<h3>Atualizar tarefa</h3>
+<pre><code>python task.py task-update</code></pre>
 
-## 📌 Comandos disponíveis
+<h3>Exibir ajuda</h3>
+<pre><code>python task.py task-help</code></pre>
 
-### Adicionar tarefa
+<h2>Decisões de projeto</h2>
+<ul>
+    <li><strong>IDs não são reutilizados:</strong> mesmo após a exclusão de uma tarefa, novos IDs continuam incrementando.</li>
+    <li><strong>Persistência simples:</strong> uso de JSON para facilitar leitura, depuração e portabilidade.</li>
+    <li><strong>CLI puro:</strong> o programa opera exclusivamente por argumentos de linha de comando, sem menus interativos.</li>
+</ul>
 
-```bash
-python Main.py task-add <title> <description> <priority>
-```
+<h2>Limitações conhecidas</h2>
+<ul>
+    <li>O comando de atualização ainda está em desenvolvimento</li>
+    <li>Interface exclusivamente textual</li>
+    <li>Projeto focado em aprendizado, não em uso produtivo</li>
+</ul>
 
-### Listar tarefas
+<h2>Objetivo educacional</h2>
+<p>Este projeto foi desenvolvido como <strong>projeto didático do Roadmap.sh</strong>, com foco em:</p>
+<ul>
+    <li>Lógica de programação</li>
+    <li>Organização de código</li>
+    <li>Manipulação de arquivos</li>
+    <li>Pensamento de engenharia de software</li>
+    <li>Construção de aplicações CLI</li>
+</ul>
 
-```bash
-python task.py task-list
-```
-
-### Remover tarefa pelo ID
-
-```bash
-python task.py task-drop <id>
-```
-
-### Atualizar tarefa
-
-```bash
-python task.py task-update
-```
-
-### Exibir ajuda
-
-```bash
-python task.py task-help
-```
-
----
-
-## 🧠 Decisões de projeto
-
-* **IDs não são reutilizados**: mesmo após a exclusão de uma tarefa, novos IDs continuam incrementando para garantir consistência e evitar ambiguidades.
-* **Persistência simples**: uso de JSON para facilitar leitura, depuração e portabilidade.
-* **CLI puro**: o programa opera exclusivamente por argumentos de linha de comando, sem menus interativos.
-
----
-
-## ⚠️ Limitações conhecidas
-
-* O comando de atualização ainda está em desenvolvimento
-* Interface exclusivamente textual
-* Projeto focado em aprendizado, não em uso produtivo
-
----
-
-## 🎯 Objetivo educacional
-
-Este projeto foi desenvolvido como **projeto didático do Roadmap.sh**, com fins de estudo e prática, com foco em:
-
-* Lógica de programação
-* Organização de código
-* Manipulação de arquivos
-* Pensamento de engenharia de software
-* Construção de aplicações CLI
-
----
-
-## 📄 Licença
-
-Este projeto é livre para estudo, modificação e uso educacional.
+<h2>Licença</h2>
+<p>Este projeto é livre para estudo, modificação e uso educacional.</p>

@@ -10,6 +10,7 @@ def read_json():
             return tasks
 
     except FileNotFoundError:
+        
         with open(file_path, "w", encoding="utf-8") as file:
             tasks = {"tasks":[]}
             json.dump(tasks, file, ensure_ascii=False, indent=2) #estudar mais
@@ -17,6 +18,7 @@ def read_json():
             return tasks
         
     except json.JSONDecodeError:
+        
         print("arquivo corrompido. ")
         with open(file_path, "w", encoding="utf-8") as file:
             json.dump({"tasks": []}, file, ensure_ascii=False, indent=2)
@@ -117,7 +119,11 @@ def display_task(tasks : dict):
     headers = ["id", "title", "description", "create_date", "update_date", "priority", "status"]
     table = tabulate(data, headers=headers, tablefmt="fancy_grid")
 
-    return table
+    if tasks['tasks'] == []:
+        print('sem tarefas para exibir, adicione uma tarefa.')
+        exit()
+    else:
+        return table
 
 def task_help():
     print("""TASK - Gerenciador de Tarefas via Linha de Comando

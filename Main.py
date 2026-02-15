@@ -1,5 +1,9 @@
-import json, sys, os
+import json, sys, os, datetime
 from tabulate import tabulate 
+
+RED    = "\033[31m"
+GREEN  = "\033[32m"
+RESET  = "\033[0m"
 
 def read_json():
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -14,12 +18,12 @@ def read_json():
         with open(file_path, "w", encoding="utf-8") as file:
             tasks = {"tasks":[]}
             json.dump(tasks, file, ensure_ascii=False, indent=2) #estudar mais
-            print("Arquivo de tarefas criado, adicione sua tarefa")
+            print(GREEN + "Arquivo de tarefas criado, adicione sua tarefa" + RESET)
             return tasks
         
     except json.JSONDecodeError:
         
-        print("arquivo corrompido. ")
+        print(RED + "arquivo corrompido. " + RESET)
         with open(file_path, "w", encoding="utf-8") as file:
             json.dump({"tasks": []}, file, ensure_ascii=False, indent=2)
         return None
@@ -53,8 +57,8 @@ def task_add(argv : list):
         'id' : new_id,
         'title' : description_treated(title),
         'description' : description_treated(description),
-        'create_date' : os.popen('date /t').read().strip(),# não sei como isso funciona
-        'update_date' : os.popen('date /t').read().strip(),# não sei como isso funciona
+        'create_date' : get_now(),
+        'update_date' : get_now(),
         'priority' : priority,
         'status' : 'Pending'
     })
@@ -72,11 +76,11 @@ def task_update(argv : list):
 
         if int(args[0]) == int(id_task['id']):
             tasks['tasks'][index]['priority'] = args[1]
-            tasks['tasks'][index]['update_date'] = os.popen('date /t').read().strip()
+            tasks['tasks'][index]['update_date'] = get_now()
             break
         
         elif index >= len(tasks['tasks'])-1:
-            print("Id não existe.")
+            print(RED + "Id não existe." + RESET)
             return 
         
     write_json(tasks)
@@ -96,7 +100,7 @@ def task_drop(argv : int): #colocar um tratamento se caso nao existir o id que o
             break
         
         elif index >= len(tasks['tasks'])-1:
-            print("Id não existe.")
+            print(RED + "Id não existe." + RESET)
             return 
         
     write_json(tasks)
@@ -120,13 +124,13 @@ def display_task(tasks : dict):
     table = tabulate(data, headers=headers, tablefmt="fancy_grid")
 
     if tasks['tasks'] == []:
-        print('sem tarefas para exibir, adicione uma tarefa.')
+        print(RED + 'sem tarefas para exibir, adicione uma tarefa.' + RESET)
         exit()
     else:
         return table
 
 def task_help():
-    print("""TASK - Gerenciador de Tarefas via Linha de Comando
+    print(GREEN + "TASK - Gerenciador de Tarefas via Linha de Comando" + RESET + """
 
 Uso:
     python task.py <comando> [argumentos]
@@ -178,8 +182,19 @@ def description_treated(description : str):
     return ' '.join(description_treated)
 
 
+def get_now():
+    return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
+def clear_screen():
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
+
+
 if __name__ == "__main__":
-    os.system('cls')
+    clear_screen()
 
     argv = sys.argv
 
@@ -196,5 +211,5 @@ if __name__ == "__main__":
         commands[argv[1].lower()]() if argv[1].lower() in commands else task_help()
 
     except IndexError:
-        print("ERROR: command not found\n")
+        print(RED + "ERROR: command not found\n" + RESET)
         task_help() 

@@ -33,7 +33,27 @@
     <li>Python 3</li>
     <li>Módulos nativos: <code>json</code>, <code>sys</code>, <code>os</code></li>
 </ul>
-<p>Este projeto não utiliza frameworks ou bibliotecas externas, mantendo o foco em recursos nativos para fins educacionais.</p>
+    <li>Dependência opcional: <code>tabulate</code> (apenas para exibição formatada de tabelas)</li>
+</ul>
+
+<h2>Instalação</h2>
+<p>Recomenda-se criar um ambiente virtual antes de instalar dependências. Exemplos:</p>
+
+<h3>Linux / macOS</h3>
+<pre><code>python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+</code></pre>
+
+<h3>Windows (PowerShell)</h3>
+<pre><code>python -m venv .venv
+.\\.venv\\Scripts\\Activate.ps1
+pip install -r requirements.txt
+</code></pre>
+
+<p>Se preferir não usar um ambiente virtual, instale localmente com <code>pip install tabulate</code>.</p>
+
+<p>Após instalar dependências, execute o CLI conforme a seção "Como executar" abaixo.</p>
 
 <h2>Estrutura do projeto</h2>
 <pre><code>.

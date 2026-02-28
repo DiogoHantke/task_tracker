@@ -121,7 +121,7 @@ def display_task(tasks : dict):
         data.append(tasks_list[index].values())
     
     headers = ["id", "title", "description", "create_date", "update_date", "priority", "status"]
-    table = tabulate(data, headers=headers, tablefmt="fancy_grid")
+    table = tabulate(data, headers=headers, tablefmt="rounded_grid")
 
     if tasks['tasks'] == []:
         print(RED + 'sem tarefas para exibir, adicione uma tarefa.' + RESET)
